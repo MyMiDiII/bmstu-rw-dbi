@@ -3,3 +3,59 @@
 \bfit{???}
 
 \imgw{complexity}{h!}{17cm}{Классификация методов по сложности чтения-записи}
+
+{
+\captionsetup{format=hang,justification=raggedright,
+              singlelinecheck=off,width=16.8cm}
+\begin{longtable}[Hc]{|p{3cm}|p{2cm}|p{2cm}|p{2cm}|p{2cm}|p{3.5cm}|}
+\caption{Сравнение методов построения индексов\label{tab:02}}\\
+    \hline
+    \multicolumn{1}{|c}{\multirow{2}{*}{\textbf{Метод}}} &
+    \multicolumn{2}{|c|}{\textbf{Время}} &
+    \multicolumn{2}{c|}{\textbf{Память}} &
+    \multicolumn{1}{c|}{\multirow{2}{*}{\textbf{Применение}}}\\
+    \cline{2-5}
+    & \multicolumn{1}{c|}{\textbf{Чтение}}
+    & \multicolumn{1}{c|}{\textbf{Запись}}
+    & \multicolumn{1}{c|}{\textbf{Чтение}}
+    & \multicolumn{1}{c|}{\textbf{Запись}}
+    &\\
+    \hline
+    B-деревья & $O(\log N)$
+    & $O(\log N)$
+    & $O(\log N)$
+    & $O(\log N)$
+    & \multirow{2}{*}{\parbox{3.5cm}{Поиск ключей в диапазоне}}\\
+    \cline{1-5}
+    Обученные индексы & $O(\log N)$
+    & $O(\log N)$
+    & $O(\log N)$
+    & $O(\log N)$
+    & \\
+    \hline
+    Хеш-индексы & $O(\log N)$
+    & $O(\log N)$
+    & $O(\log N)$
+    & $O(\log N)$
+    & \multirow{2}{*}[-.7ex]{\parbox{3.5cm}{Поиск\newlineединичного\newlineключа}}\\
+    \cline{1-5}
+    Обученные хеш-индексы & $O(\log N)$
+    & $O(\log N)$
+    & $O(\log N)$
+    & $O(\log N)$
+    & \\
+    \hline
+    Фильтр Блума & $O(\log N)$
+    & $O(\log N)$
+    & $O(\log N)$
+    & $O(\log N)$
+    & \multirow{2}{*}[-.7ex]{\parbox{\hsize}{Проверка\newlineсуществования\newlineключа}}\\
+    \cline{1-5}
+    Обученные индексы & $O(\log N)$
+    & $O(\log N)$
+    & $O(\log N)$
+    & $O(\log N)$
+    & \\
+    \hline
+\end{longtable}
+}
