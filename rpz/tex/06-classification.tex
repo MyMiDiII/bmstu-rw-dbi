@@ -1,61 +1,117 @@
 \chapter{Классификация существующих методов\label{classification}}
 
-\bfit{???}
+На основе приведенных выше описаний можно сделать вывод, что индексы в
+соответствии со структурой лежащей в их основе служат для различных задач:
+индексы на основе деревьев поиска предназначены для поиска ключей, принадлежащих
+некоторому диапазону, индексы на основе хеш-таблиц --- для поиска единичных
+ключей, индексы нас основе битовых карт --- для проверки существования ключа.
+Поэтому ниже описываются критерии оценки качества методов построения
+индексов отдельно для каждой из задач, которые они решают.
 
-\imgw{complexity}{h!}{17cm}{Классификация методов по сложности чтения-записи}
+Для оценки качества методов построения индексов на основе хеш-таблиц выделены
+следующие критерии:
+\begin{itemize}
+    \item временная сложность поиска в худшем и среднем случае~\cite{main,
+        squares};
+    \item процент коллизий~(значения на основе исследования~\cite{main}),
+        рассчитывающийся по формуле~\eqref{eq:06}:
+        \begin{equation}\label{eq:06}
+            C = \frac{k}{n},
+        \end{equation}
+        
+      где $k$ --- число коллизий,
+      
+      $n$ --- число записей в исходном наборе данных.
+\end{itemize}
+
+Результаты классификации по описанным критериям, приведены в таблице~\ref{tab:02}.
 
 {
-\captionsetup{format=hang,justification=raggedright,
-              singlelinecheck=off,width=16.8cm}
-\begin{longtable}[Hc]{|p{3cm}|p{2cm}|p{2cm}|p{2cm}|p{2cm}|p{3.5cm}|}
-\caption{Сравнение методов построения индексов\label{tab:02}}\\
+\captionsetup{format=hang,justification=raggedleft,
+              singlelinecheck=off,width=15.3cm}
+\begin{longtable}[Hc]{|p{5.3cm}|p{2cm}|p{2cm}|p{2cm}|}
+\caption{Классификация методов построения индексов для поиска единичных
+ключей\label{tab:02}}\\
     \hline
-    \multicolumn{1}{|c}{\multirow{2}{*}{\textbf{Метод}}} &
-    \multicolumn{2}{|c|}{\textbf{Время}} &
-    \multicolumn{2}{c|}{\textbf{Память}} &
-    \multicolumn{1}{c|}{\multirow{2}{*}{\textbf{Применение}}}\\
-    \cline{2-5}
-    & \multicolumn{1}{c|}{\textbf{Чтение}}
-    & \multicolumn{1}{c|}{\textbf{Запись}}
-    & \multicolumn{1}{c|}{\textbf{Чтение}}
-    & \multicolumn{1}{c|}{\textbf{Запись}}
+    \multicolumn{1}{|c|}{\multirow{2}{*}{\textbf{Метод}}} &
+    \multicolumn{2}{c|}{\textbf{Сложность}} &
+    \multicolumn{1}{c|}{\multirow{2}{*}{\textbf{Процент коллизий}}}\\
+    \cline{2-3}
+    & \multicolumn{1}{c|}{\textbf{Худший}}
+    & \multicolumn{1}{c|}{\textbf{Средний}}
     &\\
     \hline
-    B-деревья & $O(\log N)$
-    & $O(\log N)$
-    & $O(\log N)$
-    & $O(\log N)$
-    & \multirow{2}{*}{\parbox{3.5cm}{Поиск ключей в диапазоне}}\\
-    \cline{1-5}
-    Обученные индексы & $O(\log N)$
-    & $O(\log N)$
-    & $O(\log N)$
-    & $O(\log N)$
-    & \\
+    Хеш-индексы
+    & $O(n)$
+    & $O(1)$
+    & $35.3\%$\\
     \hline
-    Хеш-индексы & $O(\log N)$
-    & $O(\log N)$
-    & $O(\log N)$
-    & $O(\log N)$
-    & \multirow{2}{*}[-.7ex]{\parbox{3.5cm}{Поиск\newlineединичного\newlineключа}}\\
-    \cline{1-5}
-    Обученные хеш-индексы & $O(\log N)$
-    & $O(\log N)$
-    & $O(\log N)$
-    & $O(\log N)$
-    & \\
-    \hline
-    Фильтр Блума & $O(\log N)$
-    & $O(\log N)$
-    & $O(\log N)$
-    & $O(\log N)$
-    & \multirow{2}{*}[-.7ex]{\parbox{\hsize}{Проверка\newlineсуществования\newlineключа}}\\
-    \cline{1-5}
-    Обученные индексы & $O(\log N)$
-    & $O(\log N)$
-    & $O(\log N)$
-    & $O(\log N)$
-    & \\
+    Обученые хеш-индексы
+    & $O(n)$
+    & $O(1)$
+    & $19.5\%$\\
     \hline
 \end{longtable}
 }
+
+Таким образом, обученные хеш-индексы могут обеспечить уменьшение количества
+коллизий на $44.8\%$.
+
+
+%\imgw{complexity}{h!}{17cm}{Классификация методов по сложности чтения-записи}
+%
+%{
+%\captionsetup{format=hang,justification=raggedright,
+%              singlelinecheck=off,width=16.8cm}
+%\begin{longtable}[Hc]{|p{3cm}|p{2cm}|p{2cm}|p{2cm}|p{2cm}|p{3.5cm}|}
+%\caption{Сравнение методов построения индексов\label{tab:02}}\\
+%    \hline
+%    \multicolumn{1}{|c}{\multirow{2}{*}{\textbf{Метод}}} &
+%    \multicolumn{2}{|c|}{\textbf{Время}} &
+%    \multicolumn{2}{c|}{\textbf{Память}} &
+%    \multicolumn{1}{c|}{\multirow{2}{*}{\textbf{Применение}}}\\
+%    \cline{2-5}
+%    & \multicolumn{1}{c|}{\textbf{Чтение}}
+%    & \multicolumn{1}{c|}{\textbf{Запись}}
+%    & \multicolumn{1}{c|}{\textbf{Чтение}}
+%    & \multicolumn{1}{c|}{\textbf{Запись}}
+%    &\\
+%    \hline
+%    B-деревья & $O(\log N)$
+%    & $O(\log N)$
+%    & $O(\log N)$
+%    & $O(\log N)$
+%    & \multirow{2}{*}{\parbox{3.5cm}{Поиск ключей в диапазоне}}\\
+%    \cline{1-5}
+%    Обученные индексы & $O(\log N)$
+%    & $O(\log N)$
+%    & $O(\log N)$
+%    & $O(\log N)$
+%    & \\
+%    \hline
+%    Хеш-индексы & $O(\log N)$
+%    & $O(\log N)$
+%    & $O(\log N)$
+%    & $O(\log N)$
+%    & \multirow{2}{*}[-.7ex]{\parbox{3.5cm}{Поиск\newlineединичного\newlineключа}}\\
+%    \cline{1-5}
+%    Обученные хеш-индексы & $O(\log N)$
+%    & $O(\log N)$
+%    & $O(\log N)$
+%    & $O(\log N)$
+%    & \\
+%    \hline
+%    Фильтр Блума & $O(\log N)$
+%    & $O(\log N)$
+%    & $O(\log N)$
+%    & $O(\log N)$
+%    & \multirow{2}{*}[-.7ex]{\parbox{\hsize}{Проверка\newlineсуществования\newlineключа}}\\
+%    \cline{1-5}
+%    Обученные индексы & $O(\log N)$
+%    & $O(\log N)$
+%    & $O(\log N)$
+%    & $O(\log N)$
+%    & \\
+%    \hline
+%\end{longtable}
+%}
