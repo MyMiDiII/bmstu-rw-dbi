@@ -28,14 +28,14 @@
 
 {
 \captionsetup{format=hang,justification=raggedleft,
-              singlelinecheck=off,width=15.3cm}
+              singlelinecheck=off,width=13.3cm}
 \begin{longtable}[Hc]{|p{5.3cm}|p{2cm}|p{2cm}|p{2cm}|}
 \caption{Классификация методов построения индексов для поиска единичных
 ключей\label{tab:02}}\\
     \hline
     \multicolumn{1}{|c|}{\multirow{2}{*}{\textbf{Метод}}} &
     \multicolumn{2}{c|}{\textbf{Сложность}} &
-    \multicolumn{1}{c|}{\multirow{2}{*}{\textbf{Процент коллизий}}}\\
+    \multicolumn{1}{c|}{\multirow{2}{*}{\parbox{2cm}{\textbf{Процент\newlineколлизий}}}}\\
     \cline{2-3}
     & \multicolumn{1}{c|}{\textbf{Худший}}
     & \multicolumn{1}{c|}{\textbf{Средний}}
@@ -57,6 +57,40 @@
 Таким образом, обученные хеш-индексы могут обеспечить уменьшение количества
 коллизий на $44.8\%$.
 
+Для оценки качества методов построения индексов для проверки существования ключа
+выделены следующие критерии~(на основе исследования~\cite{main}):
+\begin{itemize}
+    \item временная сложность поиска;
+    \item итоговый размер индекса на одном и том же наборе данных~(в мегабайтах).
+\end{itemize}
+
+Результаты классификации по описанным критериям, приведены в
+таблице~\ref{tab:03}~($k$ --- количество хеш-функций).
+
+{
+\captionsetup{format=hang,justification=raggedleft,
+              singlelinecheck=off,width=12cm}
+\begin{longtable}[Hc]{|p{5.3cm}|p{2cm}|p{2cm}|}
+\caption{Классификация методов построения индексов для проверки существования
+ключа в наборе данных\label{tab:03}}\\
+    \hline
+    \multicolumn{1}{|c|}{\textbf{Метод}} &
+    \multicolumn{1}{c|}{\textbf{Сложность}} &
+    \multicolumn{1}{c|}{\textbf{Размер, MБ}}\\
+    \hline
+    Фильтр Блума
+    & $O(k)$
+    & $2.04$\\
+    \hline
+    Обученые индексы
+    & $O(1)$
+    & $1.31$\\
+    \hline
+\end{longtable}
+}
+
+Таким образом, образом обученные индексы проверки существования ключа в наборе
+данных могут обеспечивать уменьшение своего размера на $36\%$.
 
 %\imgw{complexity}{h!}{17cm}{Классификация методов по сложности чтения-записи}
 %
