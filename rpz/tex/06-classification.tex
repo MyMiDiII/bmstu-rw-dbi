@@ -20,15 +20,15 @@
 представлены на основе исследования~\cite{ulipp}.
 
 {
-\captionsetup{format=hang,justification=raggedright,
-              singlelinecheck=off,width=16.8cm}
+\captionsetup{format=hang,justification=raggedleft,
+              singlelinecheck=off,width=17cm}
 \begin{longtable}[Hc]{|p{5cm}|p{2cm}|p{2cm}|p{2cm}|}
 \caption{Классификация методов построения индексов для поиска ключей,
 принадлежащих некоторому диапазону (поиск)\label{tab:01}}\\
     \hline
-    \multicolumn{1}{|c}{\textbf{Метод}} &
-    \multicolumn{1}{|c|}{\textbf{Сложность}} &
-    \multicolumn{1}{|c|}{\textbf{Время, нс}} &
+    \multicolumn{1}{|c|}{\textbf{Метод}} &
+    \multicolumn{1}{c|}{\textbf{Сложность}} &
+    \multicolumn{1}{c|}{\textbf{Время, нс}} &
     \multicolumn{1}{c|}{\parbox{3cm}{\vspace{2mm}\centering\textbf{Обращения к
     памяти}}}\\[2.5ex]
     \hline
@@ -41,22 +41,22 @@
     & $12.6$\\
     \hline
     LIPP & $O(\log N)$
-    & $24.23$
-    & $3.1$\\
+         & \color{white}1\color{black}$24.23$
+    & \color{white}1\color{black}$3.1$\\
     \hline
 \end{longtable}
 }
 
 {
-\captionsetup{format=hang,justification=raggedright,
-              singlelinecheck=off,width=16.8cm}
+\captionsetup{format=hang,justification=raggedleft,
+              singlelinecheck=off,width=17cm}
 \begin{longtable}[Hc]{|p{5cm}|p{2cm}|p{2cm}|p{2cm}|}
 \caption{Классификация методов построения индексов для поиска ключей,
 принадлежащих некоторому диапазону (вставка)\label{tab:02}}\\
     \hline
-    \multicolumn{1}{|c}{\textbf{Метод}} &
-    \multicolumn{1}{|c|}{\textbf{Сложность}} &
-    \multicolumn{1}{|c|}{\textbf{Время, нс}} &
+    \multicolumn{1}{|c|}{\textbf{Метод}} &
+    \multicolumn{1}{c|}{\textbf{Сложность}} &
+    \multicolumn{1}{c|}{\textbf{Время, нс}} &
     \multicolumn{1}{c|}{\parbox{3cm}{\vspace{2mm}\centering\textbf{Обращения к
     памяти}}}\\[2.5ex]
     \hline
@@ -72,33 +72,32 @@
     \hline
     LIPP 
     & $O(\log^2 N)$
-    & $70.93$
-    & $3.1$\\
+    & \color{white}11\color{black}$70.93$
+    & \color{white}1\color{black}$3.1$\\
     \hline
 \end{longtable}
 }
 
-Для оценки качества методов построения индексов на основе хеш-таблиц выделены
+Таким образом, обученные индексы~(с учетом отнесения к ним LIPP) могут
+обеспечить уменьшение времени при поиске в~9.8~раза, при вставке ---
+в~15.7~раза, и уменьшить число обращений к памяти в~18.6~раза.
+
+Для оценки качества методов построения индексов для поиска единичных выделены
 следующие критерии:
 \begin{itemize}
     \item временная сложность поиска в худшем и среднем случае~\cite{main,
         squares};
     \item процент коллизий~(значения на основе исследования~\cite{main}),
-        рассчитывающийся по формуле~\eqref{eq:06}:
-        \begin{equation}\label{eq:06}
-            C = \frac{k}{n},
-        \end{equation}
+        представляющий отношения количества коллизий к числу записей.
         
-      где $k$ --- число коллизий,
-      
-      $n$ --- число записей в исходном наборе данных.
 \end{itemize}
 
-Результаты классификации по описанным критериям, приведены в таблице~\ref{tab:03}.
+В таблице~\ref{tab:03} приведены результаты классификации по описанным
+критериям.
 
 {
 \captionsetup{format=hang,justification=raggedleft,
-              singlelinecheck=off,width=13.3cm}
+              singlelinecheck=off,width=17cm}
 \begin{longtable}[Hc]{|p{5.3cm}|p{2cm}|p{2cm}|p{2cm}|}
 \caption{Классификация методов построения индексов для поиска единичных
 ключей\label{tab:03}}\\
@@ -112,12 +111,12 @@
     &\\
     \hline
     Хеш-индексы
-    & $O(n)$
+    & $O(N)$
     & $O(1)$
     & $35.3\%$\\
     \hline
     Обученные хеш-индексы
-    & $O(n)$
+    & $O(N)$
     & $O(1)$
     & $19.5\%$\\
     \hline
@@ -125,7 +124,7 @@
 }
 
 Таким образом, обученные хеш-индексы могут обеспечить уменьшение количества
-коллизий на $44.8\%$.
+коллизий на~$44.8\%$.
 
 Для оценки качества методов построения индексов для проверки существования ключа
 выделены следующие критерии~(на основе исследования~\cite{main}):
@@ -134,12 +133,12 @@
     \item размер индекса на одном и том же наборе данных~(в мегабайтах).
 \end{itemize}
 
-Результаты классификации по описанным критериям, приведены в
-таблице~\ref{tab:04}~($k$ --- количество хеш-функций).
+В таблице~\ref{tab:04} приведены результаты классификации по описанным
+критериям~($k$ --- количество хеш-функций).
 
 {
 \captionsetup{format=hang,justification=raggedleft,
-              singlelinecheck=off,width=12cm}
+              singlelinecheck=off,width=17cm}
 \begin{longtable}[Hc]{|p{5.3cm}|p{2cm}|p{2cm}|}
 \caption{Классификация методов построения индексов для проверки существования
 ключа в наборе данных\label{tab:04}}\\
@@ -159,8 +158,5 @@
 \end{longtable}
 }
 
-Таким образом, образом обученные индексы проверки существования ключа в наборе
-данных могут обеспечивать уменьшение своего размера на $36\%$.
-
-%\imgw{complexity}{h!}{17cm}{Классификация методов по сложности чтения-записи}
-%
+Таким образом, обученные индексы проверки существования ключа в наборе
+данных могут обеспечивать уменьшение своего размера на~$36\%$.

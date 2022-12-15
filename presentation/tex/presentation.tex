@@ -123,26 +123,145 @@
 
 \begin{frame}
     \frametitle{Фильтр Блума и обученные индексы}
+    \imgfs{bloom}{h!}{1.5}
+    \imgfs{learnedBloom}{h!}{1.5}
 \end{frame}
 
 \begin{frame}
     \frametitle{Классификация}
+
+Классификация методов построения индексов для поиска ключей, принадлежащих
+некоторому диапазону (поиск).
+{
+\captionsetup{format=hang,justification=raggedright,
+              singlelinecheck=off,width=17cm}
+\begin{longtable}[Hc]{|p{8cm}|p{2cm}|p{2cm}|p{4.8cm}|}
+    \hline
+    \multicolumn{1}{|c|}{\textbf{Метод}} &
+    \multicolumn{1}{c|}{\textbf{Сложность}} &
+    \multicolumn{1}{c|}{\textbf{Время, нс}} &
+    \multicolumn{1}{c|}{\parbox{4.8cm}{\vspace{2mm}\centering\textbf{Обращения к
+    памяти}}}\\[2.5ex]
+    \hline
+    B-деревья & $O(\log N)$
+    & $237.94$
+    & $57.0$\\
+    \hline
+    Обученные индексы & $O(\log N)$
+    & $139.09$
+    & $12.6$\\
+    \hline
+    LIPP & $O(\log N)$
+         & \color{white}$1$\color{black}$24.23$
+    & \color{white}$1$\color{black}$3.1$\\
+    \hline
+\end{longtable}
+}
+
 \end{frame}
 
 \begin{frame}
     \frametitle{Классификация}
+Классификация методов построения индексов для поиска ключей,
+принадлежащих некоторому диапазону (вставка)
+{
+\captionsetup{format=hang,justification=raggedright,
+              singlelinecheck=off,width=16.8cm}
+\begin{longtable}[Hc]{|p{8cm}|p{2cm}|p{2cm}|p{4.8cm}|}
+    \hline
+    \multicolumn{1}{|c|}{\textbf{Метод}} &
+    \multicolumn{1}{c|}{\textbf{Сложность}} &
+    \multicolumn{1}{c|}{\textbf{Время, нс}} &
+    \multicolumn{1}{c|}{\parbox{4.8cm}{\vspace{2mm}\centering\textbf{Обращения к
+    памяти}}}\\[2.5ex]
+    \hline
+    B-деревья
+    & $O(\log N)$
+    & $1114.19$
+    & $57.8$\\
+    \hline
+    Обученные индексы
+    & ---
+    & ---
+    & ---\\
+    \hline
+    LIPP
+    & $O(\log^2 N)$
+    & \color{white}$11$\color{black}$70.93$
+    & \color{white}$1$\color{black}$3.1$\\
+    \hline
+\end{longtable}
+}
 \end{frame}
 
 \begin{frame}
     \frametitle{Классификация}
+Классификация методов построения индексов для поиска единичных
+ключей
+{
+\captionsetup{format=hang,justification=raggedleft,
+              singlelinecheck=off,width=13.3cm}
+\begin{longtable}[Hc]{|p{6.5cm}|p{2cm}|p{2cm}|p{4.8cm}|}
+    \hline
+    \multicolumn{1}{|c|}{\multirow{2}{*}{\textbf{Метод}}} &
+    \multicolumn{2}{c|}{\textbf{Сложность}} &
+    \multicolumn{1}{c|}{\multirow{2}{*}{\parbox{4.8cm}{\textbf{Процент\newlineколлизий}}}}\\
+    \cline{2-3}
+    & \multicolumn{1}{c|}{\textbf{Худший}}
+    & \multicolumn{1}{c|}{\textbf{Средний}}
+    &\\
+    \hline
+    Хеш-индексы
+    & $O(N)$
+    & $O(1)$
+    & $35.3\%$\\
+    \hline
+    Обученные хеш-индексы
+    & $O(N)$
+    & $O(1)$
+    & $19.5\%$\\
+    \hline
+\end{longtable}
+}
 \end{frame}
 
 \begin{frame}
     \frametitle{Классификация}
+Классификация методов построения индексов для проверки существования
+ключа в наборе данных
+{
+\captionsetup{format=hang,justification=raggedleft,
+              singlelinecheck=off,width=12cm}
+\begin{longtable}[Hc]{|p{8cm}|p{2cm}|p{2cm}|}
+    \hline
+    \multicolumn{1}{|c|}{\textbf{Метод}} &
+    \multicolumn{1}{c|}{\textbf{Сложность}} &
+    \multicolumn{1}{c|}{\textbf{Размер, MБ}}\\
+    \hline
+    Фильтр Блума
+    & $O(k)$
+    & $2.04$\\
+    \hline
+    Обученные индексы
+    & $O(1)$
+    & $1.31$\\
+    \hline
+\end{longtable}
+}
 \end{frame}
 
 \begin{frame}
     \frametitle{Заключение}
+    В ходе данной работы:
+    \begin{itemize}
+        \item проведен анализ предметной области;
+        \item описаны методы построения индексов в базах данных;
+        \item предложены и обоснованы критерии оценки качества описанных методов
+          и проведено сравние методов по предложенным критериям оценки.
+    \end{itemize}
+    ~\\
+
+    Поставленная цель достигнута.
 \end{frame}
 
 \end{document}
